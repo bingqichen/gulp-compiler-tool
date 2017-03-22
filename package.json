@@ -1,0 +1,34 @@
+{
+  "name": "gulp-compiler-tool",
+  "version": "0.0.5",
+  "description": "gulp编译工具，用于编译发布到npm的源码",
+  "bin": {
+    "gulpCompiler": "index.js"
+  },
+  "main": "index.js",
+  "author": "BingqiChen",
+  "dependencies": {
+    "autoprefixer": "^6.7.7",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-clean-css": "^3.0.4",
+    "gulp-less": "^3.3.0",
+    "gulp-postcss": "^6.4.0",
+    "gulp-replace": "^0.5.4",
+    "gulp-uglify": "^2.1.2",
+    "shelljs": "^0.7.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bingqichen/gulp-compiler-tool.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bingqichen/gulp-compiler-tool/issues"
+  },
+  "homepage": "https://github.com/bingqichen/gulp-compiler-tool#readme"
+}
