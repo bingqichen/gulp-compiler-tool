@@ -23,7 +23,8 @@ gulp.task('js', () => (
       babelrc: true
     }))
     .pipe(uglify())
-    .pipe(replace(/\.less/g, '.css'))
+    // .pipe(replace(/(.*?require.+?\.)less|sass|scss|stylus(.*?)/gm, '$1css$2'))
+    .pipe(replace(/(.*?require.+?\.)less(.*?)/gm, '$1css$2'))
     .pipe(gulp.dest(path.resolve(__dirname, '../../dist')))
 ));
 
