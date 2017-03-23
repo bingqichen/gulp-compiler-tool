@@ -11,8 +11,8 @@ const clean = require('gulp-clean-css');
 gulp.task('static', () => (
   gulp.src([
     path.resolve(__dirname, '../../src/**/*.*'),
-    // '!src/**/*.js',
-    // '!src/**/*.less'
+    '!' + path.resolve(__dirname, '../../src/**/*.js'),
+    '!' + path.resolve(__dirname, '../../src/**/*.less')
   ])
     .pipe(gulp.dest(path.resolve(__dirname, '../../dist')))
 ));
@@ -37,8 +37,8 @@ gulp.task('less', () => (
     .pipe(gulp.dest(path.resolve(__dirname, '../../dist')))
 ));
 
-gulp.task('default', ['js', 'less']);
+gulp.task('default', ['static', 'js', 'less']);
 
 gulp.task('watch', () => (
-  gulp.watch('src/**/*.*', ['js', 'less'])
+  gulp.watch('src/**/*.*', ['static', 'js', 'less'])
 ));
