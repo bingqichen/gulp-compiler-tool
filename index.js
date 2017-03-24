@@ -8,6 +8,8 @@ const defaultValue = {
   dist: 'dist'
 }
 
+console.log(process.env.PWD) // 用户执行命令的目录
+
 const option = minimist(process.argv.slice(2), {
   default: defaultValue
 });
