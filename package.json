@@ -1,6 +1,6 @@
 {
   "name": "gulp-compiler-tool",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "gulp编译工具，用于编译发布到npm的源码",
   "bin": {
     "gulpCompiler": "console.log('process.cwd::::', process.cwd()); index.js"
