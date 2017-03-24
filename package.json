@@ -3,7 +3,7 @@
   "version": "0.0.8",
   "description": "gulp编译工具，用于编译发布到npm的源码",
   "bin": {
-    "gulpCompiler": "console.log('process.cwd::::', process.cwd()); index.js"
+    "gulpCompiler": "index.js"
   },
   "main": "index.js",
   "author": "BingqiChen",
