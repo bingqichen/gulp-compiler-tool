@@ -22,4 +22,4 @@ for (let variable in option) {
 
 console.log(option)
 
-// shelljs.exec(`gulp --gulpfile ${path.resolve(__dirname, 'gulpfile.js')}`);
+shelljs.exec(`gulp --gulpfile ${path.resolve(__dirname, 'gulpfile.js')}`);

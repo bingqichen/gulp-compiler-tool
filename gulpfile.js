@@ -13,6 +13,8 @@ const clean = require('gulp-clean-css');
 
 const rootPath = process.env.PWD; // 执行命令根目录
 
+const option = minimist(process.argv.slice(2));
+
 gulp.task('static', () => (
   gulp.src([
     path.resolve(rootPath, 'src/**/*.*'),
