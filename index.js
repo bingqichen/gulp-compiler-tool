@@ -14,12 +14,20 @@ const option = minimist(process.argv.slice(2), {
   default: defaultValue
 });
 
-for (let variable in option) {
-  if (option[variable] === true) {
+for (let key in option) {
+  if (option.hasOwnProperty(key) && option[key] === true) {
     throw new Error('参数错误');
   }
 }
 
-console.log(option)
+const optionToString = option => {
+  let str = '';
+  for (let key in option) {
+    if (option.hasOwnProperty(key)) {
+      const value = option[key];
+      str += `--${key} ${value}`
+    }
+  }
+}
 
-shelljs.exec(`gulp --gulpfile ${path.resolve(__dirname, 'gulpfile.js')}`);
+shelljs.exec(`gulp --gulpfile ${path.resolve(__dirname, 'gulpfile.js')} ${optionToString(option)}`);
