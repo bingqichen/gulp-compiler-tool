@@ -32,8 +32,8 @@ const lessSrcMap = [
 ]
 src.split(',').forEach(item => {
   staticSrcMap.push(path.resolve(rootPath, item.replace(/\/$/, '') + '/**/*.*'));
-  staticSrcMap.push(! + path.resolve(rootPath, item.replace(/\/$/, '') + '/**/*.js'));
-  staticSrcMap.push(! + path.resolve(rootPath, item.replace(/\/$/, '') + '/**/*.less'));
+  staticSrcMap.push('!' + path.resolve(rootPath, item.replace(/\/$/, '') + '/**/*.js'));
+  staticSrcMap.push('!' + path.resolve(rootPath, item.replace(/\/$/, '') + '/**/*.less'));
   jsSrcMap.push(path.resolve(rootPath, item.replace(/\/$/, '') + '/**/*.js'));
   lessSrcMap.push(path.resolve(rootPath, item.replace(/\/$/, '') + '/**/*.less'));
 })
