@@ -1,4 +1,4 @@
-// #!/usr/bin/env node
+#!/usr/bin/env node
 const path = require('path');
 const shelljs = require('shelljs');
 const minimist = require('minimist');
@@ -10,26 +10,27 @@ const defaultValue = {
 
 console.log(process.env.PWD) // 用户执行命令的目录
 
-const option = minimist(process.argv.slice(2), {
+const options = minimist(process.argv.slice(2), {
   default: defaultValue
 });
 
-for (let key in option) {
-  if (option.hasOwnProperty(key) && option[key] === true) {
+for (let key in options) {
+  if (options.hasOwnProperty(key) && options[key] === true) {
     throw new Error('参数错误');
   }
 }
 
-const optionToString = option => {
+const optionsToString = options => {
   let str = '';
-  for (let key in option) {
-    if (option.hasOwnProperty(key)) {
-      const value = option[key];
-      str += `--${key} ${value}`
+  for (let key in options) {
+    if (options.hasOwnProperty(key) && key !== '_') {
+      const value = options[key];
+      str += `--${key} ${value} `
     }
   }
+  return str.trim();
 }
 
-console.log(optionToString(option));
+console.log(optionsToString(options));
 
-// shelljs.exec(`gulp --gulpfile ${path.resolve(__dirname, 'gulpfile.js')} ${optionToString(option)}`);
+shelljs.exec(`gulp --gulpfile ${path.resolve(__dirname, 'gulpfile.js')} ${optionsToString(option)}`);

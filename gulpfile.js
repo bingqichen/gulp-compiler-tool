@@ -13,13 +13,18 @@ const clean = require('gulp-clean-css');
 
 const rootPath = process.env.PWD; // 执行命令根目录
 
-const option = minimist(process.argv.slice(2)); // 读取参数
+const options = minimist(process.argv.slice(2)); // 读取参数
+
+const src = options.src; // 要编译的目录
+const dist = options.dist; // 编译后目录
 
 gulp.task('static', () => (
   gulp.src([
     path.resolve(rootPath, 'src/**/*.*'),
     '!' + path.resolve(rootPath, 'src/**/*.js'),
-    '!' + path.resolve(rootPath, 'src/**/*.less')
+    '!' + path.resolve(rootPath, 'src/**/*.less'),
+    '!' + path.resolve(rootPath, dist),
+    '!' + path.resolve(rootPath, 'node_modules')
   ])
     .pipe(gulp.dest(path.resolve(rootPath, 'dist')))
 ));
