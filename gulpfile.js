@@ -10,10 +10,15 @@ const less = require('gulp-less');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const clean = require('gulp-clean-css');
+const sourcemaps = require('gulp-sourcemaps');
 
 const rootPath = process.env.PWD; // 执行命令根目录
 
-const options = minimist(process.argv.slice(2)); // 读取参数
+const options = minimist(process.argv.slice(2), {
+  string: ['src', 'dist'],
+  boolean: ['sourcemaps'],
+  unknown: () => false
+}); // 读取参数
 
 const src = options.src; // 需要编译的目录
 const dist = options.dist; // 编译后目录
@@ -45,12 +50,16 @@ gulp.task('static', () => (
 
 gulp.task('js', () => (
   gulp.src(jsSrcMap)
+    .pipe(sourcemaps.init())
     .pipe(babel({
       babelrc: true
     }))
     .pipe(uglify())
     // .pipe(replace(/(.*?require.+?\.)less|sass|scss|stylus(.*?)/gm, '$1css$2'))
     .pipe(replace(/(.*?require.+?\.)less(.*?)/gm, '$1css$2'))
+    .pipe(sourcemaps.write('', {
+      mapFile: mapFilePath => mapFilePath.replace('.js.map', '.map')
+    }))
     .pipe(gulp.dest(path.resolve(rootPath, dist)))
 ));
 
@@ -67,5 +76,7 @@ gulp.task('less', () => (
 gulp.task('default', ['static', 'js', 'less']);
 
 gulp.task('watch', () => (
-  gulp.watch(path.resolve(rootPath, 'src/**/*.*'), ['static', 'js', 'less'])
+  gulp.watch(src.split(',')
+    .map(item => path.resolve(rootPath, item.replace(/\/$/, '') + '/**/*.*')),
+    ['static', 'js', 'less'])
 ));

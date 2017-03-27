@@ -5,18 +5,16 @@ const minimist = require('minimist');
 
 const defaultValue = {
   src: 'src',
-  dist: 'dist'
+  dist: 'dist',
+  sourcemaps: true
 }
 
 const options = minimist(process.argv.slice(2), {
-  default: defaultValue
+  default: defaultValue,
+  string: ['src', 'dist'],
+  boolean: ['sourcemaps'],
+  unknown: () => false
 });
-
-for (let key in options) {
-  if (options.hasOwnProperty(key) && options[key] === true) {
-    throw new Error('参数错误');
-  }
-}
 
 const optionsToString = options => {
   let str = '';
