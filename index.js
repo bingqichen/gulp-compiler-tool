@@ -30,4 +30,6 @@ const optionToString = option => {
   }
 }
 
-shelljs.exec(`gulp --gulpfile ${path.resolve(__dirname, 'gulpfile.js')} ${optionToString(option)}`);
+console.log(optionToString(option));
+
+// shelljs.exec(`gulp --gulpfile ${path.resolve(__dirname, 'gulpfile.js')} ${optionToString(option)}`);
